@@ -1,0 +1,66 @@
+# flatpak-builder --force-clean build-dir flatpak.ocaml.lablgtk.yaml
+# flatpak-builder --user --install --force-clean build-dir flatpak.ocaml.lablgtk.yaml
+# flatpak run flatpak.ocaml.lablgtk
+
+app-id: flatpak.ocaml.lablgtk
+runtime: org.freedesktop.Sdk
+runtime-version: '22.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.ocaml
+writable-sdk: true
+command: simple.sh
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+
+build-options:
+  append-path: /usr/lib/sdk/ocaml/bin:/usr/lib/sdk/ocaml/5.0.0/_opam/bin
+  env:
+    CAML_LD_LIBRARY_PATH: /usr/lib/sdk/ocaml/5.0.0/_opam/lib/stublibs:/usr/lib/sdk/ocaml/5.0.0/_opam/lib/ocaml/stublibs:/usr/lib/sdk/ocaml/5.0.0/_opam/lib/ocaml
+    OCAML_TOPLEVEL_PATH: /usr/lib/sdk/ocaml/5.0.0/_opam/lib/toplevel
+    OPAMROOT: /usr/lib/sdk/ocaml
+    OPAMSWITCH: /usr/lib/sdk/ocaml/5.0.0
+    OPAM_SWITCH_PREFIX: /usr/lib/sdk/ocaml/5.0.0/_opam
+    OPAMLOGS: /tmp
+
+modules:
+
+  - shared-modules/gtk2/gtk2.json
+
+  - name: lablgtk
+    buildsystem: simple
+    # ensure-writable:    # does not seem to work
+    #   - /usr/lib/sdk/ocaml/repo/lock
+    sources:
+      - sources/lablgtk.json
+      - type: git
+        branch: master
+        url: https://github.com/ocaml/opam-repository
+    build-commands:
+      - ls -A --color=never | grep -Ev "cache|packages|repo" | xargs rm -rf
+      - opam admin filter -y lablgtk.2.18.13 camlp-streams.5.0.1 dune.3.10.0 ocamlfind.1.9.6 
+      - opam admin cache
+      - opam repo add lablgtk .
+      - opam install -y lablgtk.2.18.13 camlp-streams.5.0.1 dune.3.10.0 ocamlfind.1.9.6 
+      - opam repo remove --all lablgtk
+    post-install:
+      - opam info --field name,all-installed-versions lablgtk
+
+  - name: simple
+    buildsystem: simple
+    sources:
+      - type: file
+        path: simple.ml
+    build-commands:
+      - ocamlfind ocamlc -g -package lablgtk2 -linkpkg simple.ml -o simple
+      - install -Dm755 simple -t /app/bin/
+      - cp /usr/lib/sdk/ocaml/5.0.0/_opam/lib/stublibs/dlllablgtk2.so /app/lib
+
+  - name: simple-wrapper
+    buildsystem: simple
+    sources:
+      - type: file
+        path: simple.sh
+    build-commands:
+      - cp simple.sh /app/bin

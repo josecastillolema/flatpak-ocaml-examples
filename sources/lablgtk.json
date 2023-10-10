@@ -1,0 +1,34 @@
+[
+  {
+    "type": "file",
+    "url": "https://github.com/garrigue/lablgtk/archive/2.18.13.tar.gz",
+    "name": "lablgtk.2.18.13",
+    "md5": "d0a326b99475216cc22232e72c89415f",
+    "dest": "cache/md5/d0",
+    "dest-filename": "d0a326b99475216cc22232e72c89415f"
+  },
+  {
+    "type": "file",
+    "url": "https://github.com/ocaml/camlp-streams/archive/v5.0.1.tar.gz",
+    "name": "camlp-streams.5.0.1",
+    "md5": "afc874b25f7a1f13e8f5cfc1182b51a7",
+    "dest": "cache/md5/af",
+    "dest-filename": "afc874b25f7a1f13e8f5cfc1182b51a7"
+  },
+  {
+    "type": "file",
+    "url": "https://github.com/ocaml/dune/releases/download/3.10.0/dune-3.10.0.tbz",
+    "name": "dune.3.10.0",
+    "sha256": "9ff03384a98a8df79852cc674f0b4738ba8aec17029b6e2eeb514f895e710355",
+    "dest": "cache/sha256/9f",
+    "dest-filename": "9ff03384a98a8df79852cc674f0b4738ba8aec17029b6e2eeb514f895e710355"
+  },
+  {
+    "type": "file",
+    "url": "http://download.camlcity.org/download/findlib-1.9.6.tar.gz",
+    "name": "ocamlfind.1.9.6",
+    "md5": "96c6ee50a32cca9ca277321262dbec57",
+    "dest": "cache/md5/96",
+    "dest-filename": "96c6ee50a32cca9ca277321262dbec57"
+  }
+]
