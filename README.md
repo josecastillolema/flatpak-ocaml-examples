@@ -1,4 +1,4 @@
-# How to Flatpak an Ocaml application
+# How to Flatpak an OCaml application
 
 Let's take a couple [OCaml](https://ocaml.org/) applications to illustrate [Flatpak](https://flatpak.org/) distributing and packaging leveraging the [Flatpak SDK Extension for OCaml](https://github.com/josecastillolema/org.freedesktop.Sdk.Extension.ocaml):
  - a hello world CLI application
