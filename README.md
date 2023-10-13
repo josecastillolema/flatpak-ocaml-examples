@@ -171,7 +171,7 @@ Let's use the helper tool to generate the corresponding Flatpak manifest code:
 ```yaml
 $ ./flatpak-opam-generator.py --generate lablgtk lablgtk.json
 ...
->>> Generated Flatpak manifest code:
+# Generated manifest code by flatpak-opam-generator
 - name: lablgtk
   buildsystem: simple
   build-options:
