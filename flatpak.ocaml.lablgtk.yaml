@@ -15,13 +15,13 @@ finish-args:
   - --socket=fallback-x11
 
 build-options:
-  append-path: /usr/lib/sdk/ocaml/bin:/usr/lib/sdk/ocaml/5.0.0/_opam/bin
+  append-path: /usr/lib/sdk/ocaml/bin:/usr/lib/sdk/ocaml/switch/_opam/bin
   env:
-    CAML_LD_LIBRARY_PATH: /usr/lib/sdk/ocaml/5.0.0/_opam/lib/stublibs:/usr/lib/sdk/ocaml/5.0.0/_opam/lib/ocaml/stublibs:/usr/lib/sdk/ocaml/5.0.0/_opam/lib/ocaml
-    OCAML_TOPLEVEL_PATH: /usr/lib/sdk/ocaml/5.0.0/_opam/lib/toplevel
+    CAML_LD_LIBRARY_PATH: /usr/lib/sdk/ocaml/switch/_opam/lib/stublibs:/usr/lib/sdk/ocaml/5.0.0/_opam/lib/ocaml/stublibs:/usr/lib/sdk/ocaml/5.0.0/_opam/lib/ocaml
+    OCAML_TOPLEVEL_PATH: /usr/lib/sdk/ocaml/switch/_opam/lib/toplevel
     OPAMROOT: /usr/lib/sdk/ocaml
-    OPAMSWITCH: /usr/lib/sdk/ocaml/5.0.0
-    OPAM_SWITCH_PREFIX: /usr/lib/sdk/ocaml/5.0.0/_opam
+    OPAMSWITCH: /usr/lib/sdk/ocaml/switch
+    OPAM_SWITCH_PREFIX: /usr/lib/sdk/ocaml/switch/_opam
     OPAMLOGS: /tmp
 
 modules:
@@ -55,7 +55,7 @@ modules:
     build-commands:
       - ocamlfind ocamlc -g -package lablgtk2 -linkpkg simple.ml -o simple
       - install -Dm755 simple -t /app/bin/
-      - cp /usr/lib/sdk/ocaml/5.0.0/_opam/lib/stublibs/dlllablgtk2.so /app/lib
+      - cp /usr/lib/sdk/ocaml/switch/_opam/lib/stublibs/dlllablgtk2.so /app/lib
 
   - name: simple-wrapper
     buildsystem: simple
