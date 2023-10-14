@@ -35,7 +35,6 @@ modules:
       - cp -r /usr/lib/sdk/ocaml/ /app/share/runtime
       - rm -rf /app/share/runtime/ocaml/switch
       - cp -r switch /app/share/runtime/ocaml
-      # - opam switch create -y --deps-only --root /app/share/runtime/ocaml /app/share/runtime/ocaml/switch
       - opam switch create -y --deps-only /app/share/runtime/ocaml/switch
       - opam pin -y /app/share/runtime/ocaml/switch
     post-install:
