@@ -220,7 +220,7 @@ Some things to note in the following manifest:
  - The SDK extension pointing to the [Flatpak SDK Extension for OCaml](https://github.com/josecastillolema/org.freedesktop.Sdk.Extension.ocaml) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L9-L10)
  - The `writable-sdk` option uses a writable copy of the SDK for `/usr` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L11). The less intrusive `ensure-writable` option does not seem to work in this scenario [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L31-L32).
 
-    It is possible to avoid this by creating a new switch for installing `lablgtk`, see [flatpak.ocaml.lablgtk.switch.yaml](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.switch.yaml#L27-L42) example.
+    It is possible to avoid this by creating a new switch for installing `lablgtk`, see [flatpak.ocaml.lablgtk.switch.yaml](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.switch.yaml#L27-L41) example.
  - Permissions for the Flatpak app to access X11 (`--share=ipc` and `--socket=fallback-x11`) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L13-L15)
  - The build options setting the `PATH` and some OCaml related environment variables [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L16-L24)
  - We are importing GTK2 from the shared modules repository [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L27)
