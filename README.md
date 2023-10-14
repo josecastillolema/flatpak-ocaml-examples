@@ -223,7 +223,7 @@ Some things to note in the following manifest:
     Fatal error:
     /usr/lib/sdk/ocaml/bin/opam: "open" failed on /usr/lib/sdk/ocaml/repo/lock: Read-only file system
     ```
-    The less intrusive `ensure-writable` option does not seem to work in this scenario [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L32-L33).
+    The less intrusive `ensure-writable` option does not seem to work in this scenario [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L31-L32).
  - Permissions for the Flatpak app to access X11 (`--share=ipc` and `--socket=fallback-x11`) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L13-L15)
  - The build options setting the `PATH` and some OCaml related environment variables [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L16-L24)
  - We are importing GTK2 from the shared modules repository [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L27)
