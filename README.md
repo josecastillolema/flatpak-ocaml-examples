@@ -22,7 +22,7 @@ hello world
 
 Some things to note in the following manifest:
  - The SDK extension pointing to the [Flatpak SDK Extension for OCaml](https://github.com/josecastillolema/org.freedesktop.Sdk.Extension.ocaml) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L10)
- - The build options setting the `PATH` and some OCaml related environment variables [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L14-L20)
+ - The build options setting the `PATH` and some OCaml related environment variables [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L13-L20)
  - Installing the application to `/app/bin` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L30)
 
 ```yaml
@@ -217,17 +217,17 @@ exec /app/bin/simple
 ### Flatpak manifest
 
 Some things to note in the following manifest:
- - The SDK extension pointing to the [Flatpak SDK Extension for OCaml](https://github.com/josecastillolema/org.freedesktop.Sdk.Extension.ocaml)
- - The `writable-sdk` option uses a writable copy of the SDK for `/usr`. It is far from ideal but needed until a better approach comes up, as without it the build will fail:
+ - The SDK extension pointing to the [Flatpak SDK Extension for OCaml](https://github.com/josecastillolema/org.freedesktop.Sdk.Extension.ocaml) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L9)
+ - The `writable-sdk` option uses a writable copy of the SDK for `/usr` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L10). It is far from ideal but needed until a better approach comes up, as without it the build will fail:
     ```
     Fatal error:
     /usr/lib/sdk/ocaml/bin/opam: "open" failed on /usr/lib/sdk/ocaml/repo/lock: Read-only file system
     ```
-    The less intrusive `ensure-writable` option does not seem to work in this scenario.
- - Permissions for the Flatpak app to access X11 (`--share=ipc` and `--socket=fallback-x11`)
- - The build options setting the `PATH` and some OCaml related environment variables
- - We are importing GTK2 from the shared modules repository
- - Installing the application to `/app/bin` and `lablgtk` library to `/app/lib`
+    The less intrusive `ensure-writable` option does not seem to work in this scenario [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L32-L33).
+ - Permissions for the Flatpak app to access X11 (`--share=ipc` and `--socket=fallback-x11`) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L13-L15)
+ - The build options setting the `PATH` and some OCaml related environment variables [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L16-L24)
+ - We are importing GTK2 from the shared modules repository [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L27)
+ - Installing the application to `/app/bin` and `lablgtk` library to `/app/lib` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L55-L56)
 
 
 ```yaml
