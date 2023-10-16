@@ -1,3 +1,9 @@
 .flatpak-builder/
 .vscode
 build-dir
+example
+example.cm*
+example.o
+simple
+simple.cm*
+simple.o

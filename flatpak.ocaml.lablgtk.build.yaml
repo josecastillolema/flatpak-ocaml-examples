@@ -1,0 +1,55 @@
+# flatpak-builder --force-clean build-dir flatpak.ocaml.lablgtk.build.yaml
+# flatpak-builder --user --install --force-clean build-dir flatpak.ocaml.lablgtk.build.yaml
+# flatpak run flatpak.ocaml.lablgtk.build
+
+app-id: flatpak.ocaml.lablgtk.build
+runtime: org.freedesktop.Sdk
+runtime-version: '22.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.ocaml
+writable-sdk: true
+command: simple.sh
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+build-options:
+  append-path: /usr/lib/sdk/ocaml/bin:/usr/lib/sdk/ocaml/switch/_opam/bin
+  env:
+    CAML_LD_LIBRARY_PATH: /usr/lib/sdk/ocaml/switch/_opam/lib/stublibs:/usr/lib/sdk/ocaml/switch/_opam/lib/ocaml/stublibs:/usr/lib/sdk/ocaml/switch/_opam/lib/ocaml
+    OCAML_TOPLEVEL_PATH: /usr/lib/sdk/ocaml/switch/_opam/lib/toplevel
+    OPAMROOT: /usr/lib/sdk/ocaml
+    OPAMSWITCH: /usr/lib/sdk/ocaml/switch
+    OPAM_SWITCH_PREFIX: /usr/lib/sdk/ocaml/switch/_opam
+
+modules:
+  - shared-modules/gtk2/gtk2.json
+
+  - name: lablgtk
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://github.com/garrigue/lablgtk/archive/refs/tags/2.18.13.tar.gz
+        sha256: 7b9e680452458fd351cf8622230d62c3078db528446384268cd0dc37be82143c
+    build-commands:
+      - ./configure
+      - make world
+      - make install
+
+  - name: simple
+    buildsystem: simple
+    sources:
+      - type: file
+        path: simple.ml
+    build-commands:
+      - ocamlfind ocamlopt -package lablgtk2 -linkpkg simple.ml -o simple
+      - install -Dm755 simple -t /app/bin/
+      - cp /usr/lib/sdk/ocaml/switch/_opam/lib/stublibs/dlllablgtk2.so /app/lib
+
+  - name: simple-wrapper
+    buildsystem: simple
+    sources:
+      - type: file
+        path: simple.sh
+    build-commands:
+      - cp simple.sh /app/bin
