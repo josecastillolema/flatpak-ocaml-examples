@@ -6,6 +6,7 @@ Let's take a couple [OCaml](https://ocaml.org/) applications to illustrate [Flat
 
 The SDK is only needed during the building phase.
 
+**Table of contents**
 - [How to Flatpak an OCaml application](#how-to-flatpak-an-ocaml-application)
   - [Creating a hello world CLI application](#creating-a-hello-world-cli-application)
     - [Flatpak manifest](#flatpak-manifest)
