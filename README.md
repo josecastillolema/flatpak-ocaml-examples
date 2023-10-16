@@ -68,8 +68,8 @@ $ flatpak run flatpak.ocaml.example
 hello world
 ```
 
-```
 The application has an installed size of 369.2 kB:
+```
 $ flatpak info flatpak.ocaml.example
           ID: flatpak.ocaml.example
          Ref: app/flatpak.ocaml.example/x86_64/master
