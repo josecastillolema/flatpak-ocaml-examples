@@ -348,7 +348,7 @@ This is what you should see when you run it:
 
 ![](img/simple.png)
 
-The application has an installed size of 10.4 MB:
+The application has an installed size of 11.2 MB:
 ```
 $ flatpak info flatpak.ocaml.lablgtk
           ID: flatpak.ocaml.lablgtk
@@ -371,12 +371,12 @@ Info on how to later publish the application on [Flathub](https://flathub.org/) 
 
 ### Building from sources
 
-Alternativelly, instead of using opam we could build `lablgtk` from its sources.
+Alternativelly, instead of using opam `lablgtk` can be built from its [sources](https://github.com/garrigue/lablgtk/archive/refs/tags/2.18.13.tar.gz).
 
 #### Flatpak manifest
 
 Some things to note in the following manifest:
- - `lablgtk` is build from its sources instead of using opam [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L28-L37)
+ - `lablgtk` is build from its [sources](https://github.com/garrigue/lablgtk/archive/refs/tags/2.18.13.tar.gz) instead of using opam [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L28-L37)
 
 ```yaml
 app-id: flatpak.ocaml.lablgtk.build
@@ -432,4 +432,4 @@ modules:
       - cp simple.sh /app/bin
 ```
 
-The resulting application has an installed size of 11.2 MB.
+Following this method the resulting application has an installed size of 11.2 MB.
