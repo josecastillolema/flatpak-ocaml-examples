@@ -2,7 +2,7 @@
 # flatpak-builder --user --install --force-clean build-dir flatpak.ocaml.lablgtk.switch.yaml
 # flatpak run flatpak.ocaml.lablgtk.switch
 
-app-id: flatpak.ocaml.lablgtk
+app-id: flatpak.ocaml.lablgtk.switch
 runtime: org.freedesktop.Sdk
 runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
@@ -64,9 +64,11 @@ modules:
       - type: file
         path: simple.ml
     build-commands:
-      - ocamlfind ocamlc -g -package lablgtk2 -linkpkg simple.ml -o simple
+      - ocamlfind ocamlopt -package lablgtk2 -linkpkg simple.ml -o simple
       - install -Dm755 simple -t /app/bin/
       - cp /app/share/runtime/ocaml/switch/_opam/lib/stublibs/dlllablgtk2.so /app/lib
+    post-install:
+      - rm -rf /app/share/runtime/ocaml
 
   - name: simple-wrapper
     buildsystem: simple

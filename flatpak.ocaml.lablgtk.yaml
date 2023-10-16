@@ -52,7 +52,7 @@ modules:
       - type: file
         path: simple.ml
     build-commands:
-      - ocamlfind ocamlc -g -package lablgtk2 -linkpkg simple.ml -o simple
+      - ocamlfind ocamlopt -package lablgtk2 -linkpkg simple.ml -o simple
       - install -Dm755 simple -t /app/bin/
       - cp /usr/lib/sdk/ocaml/switch/_opam/lib/stublibs/dlllablgtk2.so /app/lib
 

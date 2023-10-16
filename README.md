@@ -238,7 +238,8 @@ Some things to note in the following manifest:
  - The SDK extension pointing to the [Flatpak SDK Extension for OCaml](https://github.com/josecastillolema/org.freedesktop.Sdk.Extension.ocaml) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L9-L10)
  - The `writable-sdk` option uses a writable copy of the SDK for `/usr` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L11). The less intrusive `ensure-writable` option does not seem to work in this scenario [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L31-L32).
 
-    It is possible to avoid this by creating a new switch for installing `lablgtk`, see [flatpak.ocaml.lablgtk.switch.yaml](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.switch.yaml#L27-L41) example.
+   > It is possible to avoid this by creating a new switch for installing `lablgtk`, see [flatpak.ocaml.lablgtk.switch.yaml](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.switch.yaml#L27-L41) example. In this case, the resulting installed app size is 11.2 MB.
+
  - Permissions for the Flatpak app to access X11 (`--share=ipc` and `--socket=fallback-x11`) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L13-L15)
  - The build options setting the `PATH` and some OCaml related environment variables [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L16-L24)
  - We are importing GTK2 from the shared modules repository [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.yaml#L27)
@@ -324,5 +325,24 @@ Ouch!
 This is what you should see when you run it:
 
 ![](img/simple.png)
+
+The application has an installed size of 10.4 MB:
+```
+$ flatpak info flatpak.ocaml.lablgtk
+          ID: flatpak.ocaml.lablgtk
+         Ref: app/flatpak.ocaml.lablgtk/x86_64/master
+        Arch: x86_64
+      Branch: master
+      Origin: lablgtk-origin
+  Collection: 
+Installation: user
+   Installed: 11.2 MB
+     Runtime: org.freedesktop.Sdk/x86_64/22.08
+         Sdk: org.freedesktop.Sdk/x86_64/22.08
+      Commit: b3159cf05f2d89d7caaae3bc7bc6fd6a2ab70d5195374b4222a3cbedf8f635b0
+      Parent: 499a0892394a54c93976d422aa533563b6a1b1212fd9036fbc4fcbdd023f87dd
+     Subject: Export flatpak.ocaml.lablgtk
+        Date: 2023-10-16 12:01:01 +0000
+```
 
 Info on how to later publish the application on [Flathub](https://flathub.org/) can be found [here](https://docs.flathub.org/docs/for-app-authors/submission/).
