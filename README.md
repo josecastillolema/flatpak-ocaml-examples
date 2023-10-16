@@ -68,6 +68,24 @@ $ flatpak run flatpak.ocaml.example
 hello world
 ```
 
+```
+The application has an installed size of 369.2 kB:
+$ flatpak info flatpak.ocaml.example
+          ID: flatpak.ocaml.example
+         Ref: app/flatpak.ocaml.example/x86_64/master
+        Arch: x86_64
+      Branch: master
+      Origin: example-origin
+  Collection: 
+Installation: user
+   Installed: 369.2 kB
+     Runtime: org.freedesktop.Sdk/x86_64/22.08
+         Sdk: org.freedesktop.Sdk/x86_64/22.08
+      Commit: 02386f983e23b6d991651e86c1b1a55531fd4fa6504c730c938bc06033c19f40
+     Subject: Export flatpak.ocaml.example
+        Date: 2023-10-09 12:34:32 +0000
+```
+
 Info on how to later publish the application on [Flathub](https://flathub.org/) can be found [here](https://docs.flathub.org/docs/for-app-authors/submission/).
 
 
