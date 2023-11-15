@@ -13,13 +13,13 @@ finish-args:
   - --share=ipc
   - --socket=fallback-x11
 build-options:
-  append-path: /usr/lib/sdk/ocaml/bin:/app/share/runtime/ocaml/switch/_opam/bin
+  append-path: /app/share/runtime/ocaml/bin:/app/share/runtime/ocaml/switch/_opam/bin:/usr/lib/sdk/ocaml/bin
   env:
     CAML_LD_LIBRARY_PATH: /app/share/runtime/ocaml/switch/_opam/lib/stublibs:/app/share/runtime/ocaml/switch/_opam/lib/ocaml/stublibs:/app/share/runtime/ocaml/switch/_opam/lib/ocaml
     OCAML_TOPLEVEL_PATH: /app/share/runtime/ocaml/switch/_opam/lib/toplevel
     OPAMROOT: /app/share/runtime/ocaml
     OPAMSWITCH: /app/share/runtime/ocaml/switch
-    OPAM_SWITCH_PREFIX: /app/share/runtime/ocaml/ocaml/switch/_opam
+    OPAM_SWITCH_PREFIX: /app/share/runtime/ocaml/switch/_opam
 
 modules:
   - shared-modules/gtk2/gtk2.json
@@ -27,16 +27,19 @@ modules:
   - name: switch
     buildsystem: simple
     sources:
+      - type: git
+        branch: master
+        url: https://github.com/ocaml/opam-repository
       - type: archive
-        url: https://github.com/ocaml/ocaml/archive/5.0.0.tar.gz
+        url: https://github.com/ocaml/ocaml/archive/refs/tags/5.1.0.tar.gz
         dest: switch
-        sha256: 72fa3d0ba19b82fcb9e6c62e0090b9d22e5905c4be0f94faf56904a9377a9e5b
+        sha256: 43a3ac7aab7f8880f2bb6221317be55319b356e517622fdc28359fe943e6a450
     build-commands:
-      - cp -r /usr/lib/sdk/ocaml/ /app/share/runtime
-      - rm -rf /app/share/runtime/ocaml/switch
-      - cp -r switch /app/share/runtime/ocaml
-      - opam switch create -y --deps-only /app/share/runtime/ocaml/switch
-      - opam pin -y /app/share/runtime/ocaml/switch
+      - mkdir -p ${FLATPAK_DEST}/share/runtime/ocaml
+      - mv switch ${FLATPAK_DEST}/share/runtime/ocaml
+      - opam init -y --bare --disable-sandboxing .
+      - opam switch create -y --deps-only ${FLATPAK_DEST}/share/runtime/ocaml/switch
+      - opam pin -y ${FLATPAK_DEST}/share/runtime/ocaml/switch
     post-install:
       - opam switch list
 
@@ -50,10 +53,10 @@ modules:
         url: https://github.com/ocaml/opam-repository
     build-commands:
       - ls -A --color=never | grep -Ev "cache|packages|repo" | xargs rm -rf
-      - opam admin filter -y lablgtk.2.18.13 camlp-streams.5.0.1 dune.3.10.0 ocamlfind.1.9.6 
+      - opam admin filter -y lablgtk.2.18.13 camlp-streams.5.0.1 dune.3.10.0 ocamlfind.1.9.6
       - opam admin cache
       - opam repo add lablgtk .
-      - opam install -y lablgtk.2.18.13 camlp-streams.5.0.1 dune.3.10.0 ocamlfind.1.9.6 
+      - opam install -y lablgtk.2.18.13 camlp-streams.5.0.1 dune.3.10.0 ocamlfind.1.9.6
       - opam repo remove --all lablgtk
     post-install:
       - opam info --field name,all-installed-versions lablgtk

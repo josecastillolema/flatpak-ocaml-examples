@@ -11,15 +11,18 @@ sdk-extensions:
 command: example
 
 build-options:
-  append-path: /usr/lib/sdk/ocaml/bin:/usr/lib/sdk/ocaml/switch/_opam/bin
-  env:
-    CAML_LD_LIBRARY_PATH: /usr/lib/sdk/ocaml/switch/_opam/lib/stublibs:/usr/lib/sdk/ocaml/5.0.0/_opam/lib/ocaml/stublibs:/usr/lib/sdk/ocaml/5.0.0/_opam/lib/ocaml
-    OCAML_TOPLEVEL_PATH: /usr/lib/sdk/ocaml/switch/_opam/lib/toplevel
-    OPAMROOT: /usr/lib/sdk/ocaml
-    OPAMSWITCH: /usr/lib/sdk/ocaml/switch
-    OPAM_SWITCH_PREFIX: /usr/lib/sdk/ocaml/switch/_opam
+  append-path: /usr/lib/sdk/ocaml/bin
 
 modules:
+  - name: camlp-streams
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/ocaml/camlp-streams
+        branch: trunk
+    build-commands:
+      - dune build
+
   - name: example
     buildsystem: simple
     sources:
@@ -28,5 +31,4 @@ modules:
     build-commands:
       - ocamlopt -o example example.ml
       - install -Dm755 example -t /app/bin/
-
 
