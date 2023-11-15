@@ -44,7 +44,8 @@ hello world
 Some things to note in the following manifest:
  - The SDK extension pointing to the [Flatpak SDK Extension for OCaml](https://github.com/josecastillolema/org.freedesktop.Sdk.Extension.ocaml) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L9-L10)
  - The build options setting the `PATH` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L13-L14)
- - Installing the application to `/app/bin` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L24)
+ - Build some pre-requisistes using `dune` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L17-L24)
+ - Installing the application to `/app/bin` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L33)
 
 ```yaml
 app-id: flatpak.ocaml.example
@@ -59,6 +60,15 @@ build-options:
   append-path: /usr/lib/sdk/ocaml/bin
 
 modules:
+  - name: camlp-streams
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/ocaml/camlp-streams
+        branch: trunk
+    build-commands:
+      - dune build
+
   - name: example
     buildsystem: simple
     sources:
