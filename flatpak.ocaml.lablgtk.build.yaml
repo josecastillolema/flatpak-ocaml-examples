@@ -8,43 +8,45 @@ runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.ocaml
-writable-sdk: true
 command: simple.sh
 finish-args:
   - --share=ipc
   - --socket=fallback-x11
 build-options:
-  append-path: /usr/lib/sdk/ocaml/bin
-  # env:
-  #   CAML_LD_LIBRARY_PATH: /usr/lib/sdk/ocaml/lib/ocaml:/usr/lib/sdk/ocaml/lib/ocaml/stublibs
+  append-path: /usr/lib/sdk/ocaml/bin:/app/share/runtime/ocaml
+  env:
+    CAML_LD_LIBRARY_PATH: /app/share/runtime/ocaml/lib:/usr/lib/sdk/ocaml/lib/ocaml:/usr/lib/sdk/ocaml/lib/ocaml/stublibs
+    OCAMLFIND_CONF: /app/share/runtime/ocaml/findlib.conf
+  no-debuginfo: true
 
 modules:
   - shared-modules/gtk2/gtk2.json
 
   - name: ocamlfind
     buildsystem: simple
-    # build-options:
-    #   prefix: ${FLATPAK_DEST}
     sources:
       - type: git
         url: https://github.com/ocaml/ocamlfind
         branch: master
     build-commands:
-      - ./configure
+      - mkdir -p ${FLATPAK_DEST}/share/runtime/ocaml
+      - ./configure -bindir ${FLATPAK_DEST}/share/runtime/ocaml -config ${FLATPAK_DEST}/share/runtime/ocaml -no-topfind -sitelib ${FLATPAK_DEST}/share/runtime/ocaml/lib
       - make all
       - make install
     post-install:
       - ocamlfind printconf
 
-  # - name: camlp-streams
-  #   buildsystem: simple
-  #   sources:
-  #     - type: git
-  #       url: https://github.com/ocaml/camlp-streams
-  #       branch: trunk
-  #   build-commands:
-  #     - dune build
-  #     - dune install --prefix ${FLATPAK_DEST}
+  - name: camlp-streams
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/ocaml/camlp-streams
+        branch: trunk
+    build-commands:
+      - dune build
+      - dune install --prefix /app/share/runtime/ocaml
+    post-install:
+      - ocamlfind query camlp-streams
 
   - name: lablgtk
     buildsystem: simple
@@ -53,9 +55,9 @@ modules:
         url: https://github.com/garrigue/lablgtk/archive/refs/tags/2.18.13.tar.gz
         sha256: 7b9e680452458fd351cf8622230d62c3078db528446384268cd0dc37be82143c
     build-commands:
-      - ./configure --prefix ${FLATPAK_DEST}
+      - ./configure
       - make world
-      - make old-install
+      - make old-install DESTDIR=/app/share/runtime/ocaml
 
   - name: simple
     buildsystem: simple
@@ -63,9 +65,12 @@ modules:
       - type: file
         path: simple.ml
     build-commands:
+      - mv /app/share/runtime/ocaml/usr/lib/sdk/ocaml/lib/ocaml/lablgtk2 /app/share/runtime/ocaml/lib
       - ocamlfind ocamlopt -package lablgtk2 -linkpkg simple.ml -o simple
       - install -Dm755 simple -t /app/bin/
-      - cp /usr/lib/sdk/ocaml/switch/_opam/lib/stublibs/dlllablgtk2.so /app/lib
+      - mv /app/share/runtime/ocaml/usr/lib/sdk/ocaml/lib/ocaml/stublibs/dlllablgtk2.so /app/lib
+    post-install:
+      - rm -rf /app/share/runtime/ocaml
 
   - name: simple-wrapper
     buildsystem: simple
