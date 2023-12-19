@@ -160,7 +160,7 @@ Ouch!
 
 This is what you should see when you run it:
 
-![](img/simple.png)
+![](https://raw.githubusercontent.com/josecastillolema/flatpak-ocaml-examples/main/img/simple.png)
 
 ### Preparations
 
