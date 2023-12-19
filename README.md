@@ -194,6 +194,7 @@ Some things to note in the following manifest:
  - Installing some `lablgtk` pre-requisites: `ocamlfind` and `camlp-streams` (required only with OCaml>=5) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L25-L49)
  - `lablgtk` is build from its [sources](https://github.com/garrigue/lablgtk/archive/refs/tags/2.18.13.tar.gz) instead of using opam [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L51-L60)
  - Installing the application to `/app/bin` and `lablgtk` library to `/app/lib` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L70-L71)
+ - Wrapper setup [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L75-L81)
 
 
 ```yaml
