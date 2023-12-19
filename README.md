@@ -191,7 +191,7 @@ Some things to note in the following manifest:
  - The build options setting the `PATH` and some OCaml related environment variables [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L16-L19)
  - For some reason `debuginfo` was breaking `ocamlfind`, so it has been disabled [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L20)
  - We are importing GTK2 from the shared modules repository [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L23)
- - Installing some pre-requisites of `lablgtk`: `ocamlfind` and `camlp-streams` (required only with OCaml>=5) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L25-L49)
+ - Installing some `lablgtk` pre-requisites: `ocamlfind` and `camlp-streams` (required only with OCaml>=5) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L25-L49)
  - `lablgtk` is build from its [sources](https://github.com/garrigue/lablgtk/archive/refs/tags/2.18.13.tar.gz) instead of using opam [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L51-L60)
  - Installing the application to `/app/bin` and `lablgtk` library to `/app/lib` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L70-L71)
 
