@@ -294,7 +294,7 @@ Ouch!
 
 This is what you should see when you run it:
 
-![](img/simple.png)
+![](https://raw.githubusercontent.com/josecastillolema/flatpak-ocaml-examples/main/img/simple.png)
 
 The application has an installed size of 34.8 MB:
 ```
@@ -502,7 +502,7 @@ Ouch!
 
 This is what you should see when you run it:
 
-![](img/simple.png)
+![](https://raw.githubusercontent.com/josecastillolema/flatpak-ocaml-examples/main/img/simple.png)
 
 The application has an installed size of 11.3 MB:
 ```
