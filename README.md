@@ -1,6 +1,6 @@
 # How to Flatpak an OCaml application
 
-Let's take a couple [OCaml](https://ocaml.org/) applications to illustrate [Flatpak](https://flatpak.org/) distributing and packaging leveraging the [Flatpak SDK Extension for OCaml](https://github.com/josecastillolema/org.freedesktop.Sdk.Extension.ocaml):
+Let's take a couple [OCaml](https://ocaml.org/) applications to illustrate [Flatpak](https://flatpak.org/) distributing and packaging leveraging the [Flatpak SDK Extension for OCaml](https://github.com/flathub/org.freedesktop.Sdk.Extension.ocaml):
  - a hello world CLI application
  - a simple GTK program from the [Introduction to Gtk](https://v2.ocaml.org/learn/tutorials/introduction_to_gtk.html) OCaml tutorial
 
@@ -43,7 +43,7 @@ hello world
 ### Flatpak manifest
 
 Some things to note in the following manifest:
- - The SDK extension pointing to the [Flatpak SDK Extension for OCaml](https://github.com/josecastillolema/org.freedesktop.Sdk.Extension.ocaml) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L9-L10)
+ - The SDK extension pointing to the [Flatpak SDK Extension for OCaml](https://github.com/flathub/org.freedesktop.Sdk.Extension.ocaml) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L9-L10)
  - The build options setting the `PATH` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L13-L14)
  - Build some pre-requisistes using `dune` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L17-L24)
  - Installing the application to `/app/bin` [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.example.yaml#L33)
@@ -186,7 +186,7 @@ exec /app/bin/simple
 #### Flatpak manifest
 
 Some things to note in the following manifest:
- - The SDK extension pointing to the [Flatpak SDK Extension for OCaml](https://github.com/josecastillolema/org.freedesktop.Sdk.Extension.ocaml) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L9-L10)
+ - The SDK extension pointing to the [Flatpak SDK Extension for OCaml](https://github.com/flathub/org.freedesktop.Sdk.Extension.ocaml) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L9-L10)
  - Permissions for the Flatpak app to access X11 (`--share=ipc` and `--socket=fallback-x11`) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L12-L14)
  - The build options setting the `PATH` and some OCaml related environment variables [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L16-L19)
  - For some reason `debuginfo` was breaking `ocamlfind`, so it has been disabled [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.build.yaml#L20)
@@ -390,7 +390,7 @@ $ ./flatpak-opam-generator.py --generate lablgtk lablgtk.json
 #### Flatpak manifest
 
 Some things to note in the following manifest:
- - The SDK extension pointing to the [Flatpak SDK Extension for OCaml](https://github.com/josecastillolema/org.freedesktop.Sdk.Extension.ocaml) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.switch.yaml#L9-L10)
+ - The SDK extension pointing to the [Flatpak SDK Extension for OCaml](https://github.com/flathub/org.freedesktop.Sdk.Extension.ocaml) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.switch.yaml#L9-L10)
  - Permissions for the Flatpak app to access X11 (`--share=ipc` and `--socket=fallback-x11`) [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.switch.yaml#L12-L14)
  - The build options setting the `PATH` and some OCaml related environment variables [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.switch.yaml#L15-L22)
  - We are importing GTK2 from the shared modules repository [&#8629;](https://github.com/josecastillolema/flatpak-ocaml-examples/blob/main/flatpak.ocaml.lablgtk.switch.yaml#L25)
