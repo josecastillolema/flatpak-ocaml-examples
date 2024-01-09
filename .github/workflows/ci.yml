@@ -39,3 +39,19 @@ jobs:
         bundle: flatpak.ocaml.lablgtk.build.flatpak
         manifest-path: flatpak.ocaml.lablgtk.build.yaml
         cache-key: flatpak-builder-${{ github.sha }}
+
+  labgtk_switch:
+    name: "Labgtk built with opam Flatpak example"
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:freedesktop-23.08
+      options: --privileged
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+    - uses: flatpak/flatpak-github-actions/flatpak-builder@master
+      with:
+        bundle: flatpak.ocaml.lablgtk.switch.flatpak
+        manifest-path: flatpak.ocaml.lablgtk.switch.yaml
+        cache-key: flatpak-builder-${{ github.sha }}
